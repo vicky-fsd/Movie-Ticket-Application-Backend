@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
           let OTP= otpGenerator.generate(6, { upperCaseAlphabets: true, specialChars: true }); //otp generation;
               let otp=new UserOTP({Useremail:email,otp:OTP,createdAt:new Date(),expireAt:new Date()+86400000});
               otp.save();                                                                          // saving the otp in backend
-              let tokenOTP=jwt.sign({'Useremail':email}, "v2i4g0n6e9s6h");                    // token genration to pass unique email for verification through otp
+              let tokenOTP=jwt.sign({'Useremail':email},'v2i4g0n6e9s6h');                    // token genration to pass unique email for verification through otp
               sendOTPforverification(email,OTP);                                                  //  sending email
               res.status(200).send({msg:"Please verify your email !","token":tokenOTP});         // response     
       }
@@ -84,7 +84,7 @@ const optVerifier = async(req,res)=>{
   const databaseotp=await UserOTP.find({Useremail});
    try {
       //if(databaseotp.length>0){
-           console.log("otp",otp)
+          // console.log("otp",otp)
      if(otp===databaseotp[0].otp){
       await userModel.findByIdAndUpdate(user[0]._id, { verify: true });
       await UserOTP.deleteMany({Useremail});
