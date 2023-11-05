@@ -64,7 +64,7 @@ function sendBookingUpdate(
       subject: "Booking Success",
       text: "Hey, here's your booking information.",
       html: `  
-      <a style="font-size: 20px;" href="http://localhost:3000/qrcode/${qrCodeEncode}"> CLICK for QRCODE </a>
+      <a style="font-size: 20px;" href="https://book-bmt.netlify.app/qrcode/${qrCodeEncode}"> CLICK for QRCODE </a>
       <div style="display: flex; justify-content: space-between; align-items: flex-start;">
       <div>
       <p style="font-weight: bold;">${bookingDetails.showName}</p>
